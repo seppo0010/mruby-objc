@@ -7,6 +7,7 @@
 //
 
 #import "MRViewController.h"
+#import "MRRun.h"
 
 @interface MRViewController ()
 
@@ -17,13 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    code.text = @"def myFunc\n\t1 + 2\nend\nmyFunc";
+    response.text = @"";
+    [code becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)run {
+    response.text = [[[MRRun new] run:code.text] description];
+    [code resignFirstResponder];
 }
 
 @end

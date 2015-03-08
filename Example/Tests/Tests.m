@@ -6,37 +6,72 @@
 //  Copyright (c) 2014 Sebastian Waisbrot. All rights reserved.
 //
 
+#import "MRRun.h"
+#import "MRRange.h"
+
 SpecBegin(InitialSpecs)
 
-describe(@"these will fail", ^{
-
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
+static MRRun* mr;
+describe(@"mruby types", ^{
+    beforeEach(^() {
+        mr = [MRRun new];
     });
 
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
+    it(@"int", ^{
+        NSNumber* number = [mr run:@"1 + 2"];
+        expect([number intValue]).to.equal(3);
     });
-    
-    it(@"will wait and fail", ^AsyncBlock {
-        
-    });
-});
 
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
+    it(@"true", ^{
+        NSNumber* number = [mr run:@"true"];
+        expect([number boolValue]).to.equal(TRUE);
+    });
+
+    it(@"false", ^{
+        NSNumber* number = [mr run:@"false"];
+        expect([number boolValue]).to.equal(FALSE);
+    });
+
+    it(@"string", ^{
+        NSString* str = [mr run:@"'string'"];
+        expect(str).to.equal(@"string");
+    });
+
+    it(@"symbol", ^{
+        NSString* str = [mr run:@":symbol"];
+        expect(str).to.equal(@"symbol");
+    });
+
+    it(@"double", ^{
+        NSNumber* d = [mr run:@"1.23"];
+        expect([d doubleValue]).to.equal(1.23);
+    });
+
+    it(@"array", ^{
+        NSArray* d = [mr run:@"['val1', 'value2']"];
+        expect(d).to.equal(@[@"val1", @"value2"]);
     });
     
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
+    it(@"hash", ^{
+        NSDictionary* d = [mr run:@"{key: 'value'}"];
+        expect(d).to.equal(@{@"key": @"value"});
     });
     
-    it(@"will wait and succeed", ^AsyncBlock {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            done();
-        });
+    it(@"range", ^{
+        MRRange* range = [mr run:@"1..100"];
+        expect([range.begin intValue]).to.equal(1);
+        expect([range.end intValue]).to.equal(100);
+    });
+
+    it(@"exception", ^{
+        BOOL catched = FALSE;
+        @try {
+            [mr run:@"class MyException < Exception; end; raise MyException"];
+        } @catch (NSException* exc) {
+            catched = TRUE;
+            expect([exc name]).to.contain(@"MyExceptionx");
+        }
+        expect(catched).to.equal(TRUE);
     });
 });
 

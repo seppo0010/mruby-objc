@@ -1,0 +1,6 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/." "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Expecta" "${PODS_ROOT}/Headers/Public/Specta" "${PODS_ROOT}/Headers/Public/mruby" "${PODS_ROOT}/Headers/Public/mruby/mruby"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/." -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Expecta" -isystem "${PODS_ROOT}/Headers/Public/Specta" -isystem "${PODS_ROOT}/Headers/Public/mruby" -isystem "${PODS_ROOT}/Headers/Public/mruby/mruby"
+OTHER_LDFLAGS = -ObjC -l"Pods-mruby-mruby"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods

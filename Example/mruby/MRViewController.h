@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MRViewController : UIViewController
+@interface MRViewController : UIViewController {
+    IBOutlet UITextView* code;
+    IBOutlet UITextView* response;
+}
+
+- (IBAction)run;
 
 @end
