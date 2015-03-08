@@ -1,4 +1,4 @@
-# mruby
+# mruby-objc
 
 [![CI Status](http://img.shields.io/travis/Sebastian Waisbrot/mruby.svg?style=flat)](https://travis-ci.org/Sebastian Waisbrot/mruby)
 [![Version](https://img.shields.io/cocoapods/v/mruby.svg?style=flat)](http://cocoadocs.org/docsets/mruby)
@@ -9,7 +9,9 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## Example
+
+![](http://i.imgur.com/GWu7DFB.png)
 
 ## Installation
 
@@ -25,4 +27,3 @@ Sebastian Waisbrot, seppo0010@gmail.com
 ## License
 
 mruby is available under the MIT license. See the LICENSE file for more info.
-
