@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'mruby', :exclusive => true do
+  pod "mruby", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "mruby", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
